@@ -15,7 +15,7 @@ export default function Layout() {
 
   return (
     <div className="mx-auto flex min-h-full max-w-screen-sm flex-col">
-      <main className="flex-1 px-4 pb-28 pt-4">
+      <main className="flex-1 px-4 pb-28 safe-top">
         <Outlet />
       </main>
 
@@ -24,7 +24,8 @@ export default function Layout() {
           type="button"
           aria-label="Ajouter un vin"
           onClick={() => navigate('/vin/nouveau')}
-          className="fixed bottom-20 right-4 z-20 flex h-16 w-16 items-center justify-center rounded-full bg-wine-700 text-3xl text-white shadow-lg active:scale-95 active:bg-wine-800 sm:right-[calc(50%-15rem)]"
+          className="fixed right-4 z-20 flex h-16 w-16 items-center justify-center rounded-full bg-wine-700 text-3xl text-white shadow-lg active:scale-95 active:bg-wine-800 sm:right-[calc(50%-15rem)]"
+          style={{ bottom: 'calc(5rem + env(safe-area-inset-bottom))' }}
         >
           +
         </button>
