@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/nice-lovelace-xukv8c
   workflow_dispatch:
 
 # Autorise le déploiement vers GitHub Pages.
