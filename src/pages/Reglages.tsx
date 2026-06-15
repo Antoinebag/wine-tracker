@@ -59,6 +59,30 @@ export default function Reglages() {
     setMessage({ type: 'ok', texte: 'Toutes les données ont été effacées.' });
   };
 
+  // Lien public de l'app (origine + chemin de base) — dynamique selon l'hébergement.
+  const lienApp = window.location.origin + import.meta.env.BASE_URL;
+
+  const copierLien = async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(lienApp);
+      } else {
+        // Repli pour les navigateurs sans API Clipboard.
+        const ta = document.createElement('textarea');
+        ta.value = lienApp;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      setMessage({ type: 'ok', texte: 'Lien de l’application copié dans le presse-papier !' });
+    } catch {
+      setMessage({ type: 'err', texte: `Copie impossible. Lien : ${lienApp}` });
+    }
+  };
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-wine-800">Réglages</h1>
@@ -140,6 +164,20 @@ export default function Reglages() {
         </p>
       </section>
 
+      {/* Installer / partager */}
+      <section className="card space-y-3 p-4">
+        <h2 className="font-semibold text-stone-800">Installer / partager</h2>
+        <p className="text-sm text-stone-500">
+          Ouvrez ce lien sur un téléphone, puis « Ajouter à l’écran d’accueil » pour installer l’app.
+        </p>
+        <p className="break-all rounded-xl bg-stone-100 px-3 py-2 text-sm text-stone-600">
+          {lienApp}
+        </p>
+        <button type="button" className="btn-secondary w-full" onClick={copierLien}>
+          🔗 Copier le lien de l’application
+        </button>
+      </section>
+
       {/* Préférences */}
       <section className="card space-y-3 p-4">
         <h2 className="font-semibold text-stone-800">Préférences</h2>
@@ -170,6 +208,9 @@ export default function Reglages() {
         <p>
           Application 100 % locale : vos données restent sur cet appareil, et l’app fonctionne
           hors-ligne.
+        </p>
+        <p className="pt-1 font-medium text-wine-700">
+          App 100 % réalisée par Antoine B pour votre bon plaisir 🍷
         </p>
       </section>
 
