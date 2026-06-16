@@ -15,7 +15,7 @@ export default function Layout() {
 
   return (
     <div className="mx-auto flex min-h-full max-w-screen-sm flex-col">
-      <main className="flex-1 px-4 pb-28 safe-top">
+      <main className={`flex-1 px-4 safe-top ${masquerFab ? 'pb-safe-nav' : 'pb-safe-fab'}`}>
         <Outlet />
       </main>
 

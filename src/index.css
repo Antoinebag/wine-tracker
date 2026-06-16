@@ -64,3 +64,17 @@ button {
 .safe-top {
   padding-top: calc(env(safe-area-inset-top) + 1rem);
 }
+
+/*
+ * pb-safe-fab : espace bas quand le FAB (+) est visible.
+ * Le FAB est positionné à calc(5rem + safe-area) et mesure 4rem de haut,
+ * donc son bord supérieur est à calc(9rem + safe-area). On ajoute 0.5rem de marge.
+ */
+.pb-safe-fab {
+  padding-bottom: calc(9.5rem + env(safe-area-inset-bottom));
+}
+
+/* pb-safe-nav : espace bas sur les pages sans FAB (formulaires). */
+.pb-safe-nav {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+}
