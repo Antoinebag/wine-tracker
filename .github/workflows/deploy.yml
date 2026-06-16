@@ -3,7 +3,7 @@ name: Déploiement GitHub Pages
 on:
   push:
     branches:
-      - main
+      - claude/main
   workflow_dispatch:
 
 # Autorise le déploiement vers GitHub Pages.
